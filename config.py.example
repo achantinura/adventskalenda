@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+class Config:	
+	# 1090, 437, 314, 1203
+	jemand = {
+		'Hugo': {
+			'losnr': '1090',
+			'handynr': '49xxxxxxxxx'
+		}
+	}
+
+	adventskalender_url = 'http://<adventskalenderurl goes here>'
+
+	command = "/path/to/yowsup demos -c /path/to/yowsup/config -M -s %s %s"
+	msg = """\"Hi %s,\ndu hast beim LionsClub-Annweiler Adventskalender 2015 mit der Losnummer %s %s von %s gewonnen.\""""
