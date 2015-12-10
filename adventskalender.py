@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import requests
 import os
+import time
 from pyquery import PyQuery as pq
 from config import Config
 
@@ -43,6 +44,7 @@ if __name__ == '__main__':
   for member in family:
     losnr = Config.jemand[member]['losnr']
     telnr = Config.jemand[member]['handynr']
+    gewonnen = False
 
     # check tuerchen
     for tuer in tuerchen:
@@ -53,6 +55,15 @@ if __name__ == '__main__':
         if losnr in reward['losnr']:
           message = Config.msg % (member, losnr, reward['artikel'], reward['sponsor'])
           messages.append(message)
+          gewonnen = True
 
           # notify the lucky winner 
           os.system(Config.command % (telnr, message.encode('utf-8')))
+          time.sleep(2)
+    if gewonnen == False:
+      message = Config.msg_fail % (member, losnr)
+      messages.append(message)
+
+      # notify the poor looser
+      os.system(Config.command % (telnr, message.encode('utf-8')))
+      time.sleep(2)
